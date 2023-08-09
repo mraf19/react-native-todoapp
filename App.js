@@ -53,11 +53,11 @@ export default function App() {
   return (
     <View style={styles.container}>
       {/* header */}
-      <View>
-        <Text style={styles.header}>To Do App</Text>
+      <View style={styles.header}>
+        <Text style={styles.headerText}>To Do App</Text>
       </View>
       {/* content */}
-      <View>
+      <View style={styles.content}>
         {/*form to add todo list  */}
         <View>
           <TextInput
@@ -93,11 +93,19 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   header: {
-    padding: 40,
-    fontSize: 24,
     backgroundColor: "coral",
+    height: 80,
+    marginBottom: 20,
+  },
+  headerText: {
+    fontSize: 24,
     fontWeight: "bold",
     textAlign: "center",
+    color: "#444",
+  },
+  content: {
+    flex: 1,
+    padding: 10,
   },
   input: {
     borderBottomColor: "#333",
