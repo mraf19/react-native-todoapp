@@ -4,11 +4,13 @@ import {
   Alert,
   Button,
   FlatList,
+  Keyboard,
   ScrollView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
 } from "react-native";
 
@@ -51,26 +53,26 @@ export default function App() {
     });
   };
   return (
-    <View style={styles.container}>
-      {/* header */}
-      <View style={styles.header}>
-        <Text style={styles.headerText}>To Do App</Text>
-      </View>
-      {/* content */}
-      <View style={styles.content}>
-        {/*form to add todo list  */}
-        <View>
-          <TextInput
-            onChangeText={changeHandler}
-            value={input}
-            style={styles.input}
-            placeholder="what's going todo..."
-          />
-          <Button title="Add" color="coral" onPress={pressButtonHandler} />
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.container}>
+        {/* header */}
+        <View style={styles.header}>
+          <Text style={styles.headerText}>To Do App</Text>
         </View>
-        {/* list */}
-        <View style={styles.list}>
-          <ScrollView>
+        {/* content */}
+        <View style={styles.content}>
+          {/*form to add todo list  */}
+          <View>
+            <TextInput
+              onChangeText={changeHandler}
+              value={input}
+              style={styles.input}
+              placeholder="what's going todo..."
+            />
+            <Button title="Add" color="coral" onPress={pressButtonHandler} />
+          </View>
+          {/* list */}
+          <View style={styles.list}>
             <FlatList
               data={data}
               renderItem={({ item }) => (
@@ -79,11 +81,11 @@ export default function App() {
                 </TouchableOpacity>
               )}
             />
-          </ScrollView>
+          </View>
         </View>
+        <StatusBar style="auto" />
       </View>
-      <StatusBar style="auto" />
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -96,6 +98,7 @@ const styles = StyleSheet.create({
     backgroundColor: "coral",
     height: 80,
     marginBottom: 20,
+    justifyContent: "center",
   },
   headerText: {
     fontSize: 24,
@@ -105,14 +108,16 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    padding: 10,
+    paddingHorizontal: 30,
+    paddingBottom: 20,
   },
   input: {
     borderBottomColor: "#333",
     borderBottomWidth: 1,
     paddingHorizontal: 4,
     paddingVertical: 6,
-    fontSize: 12,
+    fontSize: 16,
+    marginBottom: 10,
   },
   text: {
     borderWidth: 1,
